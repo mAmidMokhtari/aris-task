@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import { ExpertCard } from 'components/ExpertCard';
-import { FilterBar } from 'components/FilterBar';
-import { SearchBar } from 'components/SearchBar';
-import { useExperts } from 'hooks/useExperts';
-import { IData } from 'types';
+import { ExpertCard } from "components/ExpertCard";
+import { FilterBar } from "components/FilterBar";
+import { SearchBar } from "components/SearchBar";
+import { useExperts } from "hooks/useExperts";
+import { IData } from "types";
 
 const Home: React.FC = () => {
   const { data: experts, isLoading, error } = useExperts();
