@@ -20,7 +20,7 @@ export const FilterBar: React.FC = () => {
   };
 
   return (
-    <div className="flex space-x-4">
+    <div>
       <select value={filters.sort} onChange={handleSortChange}>
         <option value="">Sort By</option>
         <option value="certified_at">Highest Experience</option>

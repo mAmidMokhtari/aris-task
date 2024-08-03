@@ -16,7 +16,10 @@ const fetchExperts = async () => {
 };
 
 export const useExperts = () => {
-  const { data, error, isLoading } = useQuery(['experts'], fetchExperts);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['experts'],
+    queryFn: fetchExperts
+  });
   const setExperts = useStore((state) => state.setExperts);
   if (data) setExperts(data);
 
