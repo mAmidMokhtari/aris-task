@@ -1,30 +1,36 @@
-# React + TypeScript + Vite
+# Expert Finder Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This is a single-page React application that displays a list of experts fetched from an external API. The application allows users to filter and search for experts based on various criteria.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
 
-## Expanding the ESLint configuration
+- React with TypeScript
+- Vite
+- TailwindCSS
+- React Query
+- Zustand
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Setup and Run the Project Locally
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repository:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+   ```bash
+   git clone <repository-url>
+   cd my-expert-app
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Install dependencies:
+  npm install
+
+3. Run the application:
+   npm run dev
+
+4. Open your browser and navigate to <http://localhost:3000>.
+
+## Assumptions and Decisions
+
+- The API provides all necessary data for experts.
+- TailwindCSS is used for styling as it allows for rapid UI development.
+- React Query is used for data fetching to handle caching and state management of server state.
+- Zustand is used for global state management as it is lightweight and simple to use.
