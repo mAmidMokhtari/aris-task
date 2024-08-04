@@ -1,4 +1,4 @@
-enum CounselingTypesEnum {
+export enum CounselingTypesEnum {
     in_office,
     video_call,
     voice_call
