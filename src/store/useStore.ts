@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface Expert {
   id: string;
@@ -27,12 +27,12 @@ interface State {
 export const useStore = create<State>((set) => ({
   experts: [],
   filters: {
-    sort: '',
+    sort: "",
     gender: null,
     acceptsInsurance: null,
-    search: '',
+    search: "",
   },
   setExperts: (experts) => set({ experts }),
-  setFilters: (filters) => set((state) => ({ filters: { ...state.filters, ...filters } })),
+  setFilters: (filters) =>
+    set((state) => ({ filters: { ...state.filters, ...filters } })),
 }));
-

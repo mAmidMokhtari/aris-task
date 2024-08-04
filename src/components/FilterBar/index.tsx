@@ -3,7 +3,7 @@ import React from "react";
 import { manIcon, womanIcon } from "assets";
 import { IconButton, Toggle } from "components/Base";
 import { text } from "lib/text";
-import useStore from "store/useStore";
+import { useStore } from "store/useStore";
 
 export const FilterBar: React.FC = () => {
   const { filters, setFilters } = useStore();

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { text } from "lib/text";
-import useStore from "store/useStore";
+import { useStore } from "store/useStore";
 
 export const SearchBar: React.FC = () => {
   const { filters, setFilters } = useStore();
