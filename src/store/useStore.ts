@@ -24,7 +24,7 @@ interface State {
   setFilters: (filters: Partial<Filters>) => void;
 }
 
-const useStore = create<State>((set) => ({
+export const useStore = create<State>((set) => ({
   experts: [],
   filters: {
     sort: '',
@@ -36,4 +36,3 @@ const useStore = create<State>((set) => ({
   setFilters: (filters) => set((state) => ({ filters: { ...state.filters, ...filters } })),
 }));
 
-export default useStore;

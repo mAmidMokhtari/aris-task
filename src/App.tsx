@@ -10,8 +10,8 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="max-h-screen">
-        <div className="flex flex-col mx-20 gap-2">
-          <div className="bg-slate-500 p-4 text-center">Header</div>
+        <div className="flex flex-col gap-2 mx-20">
+          <div className="bg-gray-500 p-4 text-center">Header</div>
           <Advisors />
         </div>
         <div className="bg-green-600 p-32 text-center">Footer</div>

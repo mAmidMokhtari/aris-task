@@ -11,7 +11,7 @@ export const SearchBar: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-between items-center bg-slate-100 p-2">
+    <div className="flex justify-between items-center bg-gray-300 p-2">
       <div className="flex items-center gap-2">
         <div>{text.sortBy}</div>
         <div className="flex items-center gap-6">
@@ -26,7 +26,7 @@ export const SearchBar: React.FC = () => {
           placeholder={text.search}
           value={filters.search}
           onChange={handleSearchChange}
-          className="p-2 border bg-white w-full"
+          className="bg-white p-2 border w-full"
         />
       </div>
     </div>

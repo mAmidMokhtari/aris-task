@@ -1,5 +1,5 @@
 import axios from 'axios';
-import useStore from 'store/useStore';
+import { useStore } from 'store/useStore';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -15,7 +15,7 @@ const fetchExperts = async () => {
   return response.data;
 };
 
-export function useExpertsQuery() {
+export const useExpertsQuery = () => {
   const { data, error, isLoading } = useQuery({
     queryKey: ['experts'],
     queryFn: fetchExperts

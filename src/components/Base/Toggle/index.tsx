@@ -1,6 +1,6 @@
 import { useToggle } from "hooks/useToggle";
 
-export function Toggle() {
+export const Toggle = () => {
   const [value, toggle] = useToggle();
   const handleClick = () => toggle();
 
@@ -10,14 +10,14 @@ export function Toggle() {
       className={`${
         value
           ? "focus:ring-2 focus:ring-green-500"
-          : "focus:ring-2 focus:ring-slate-200"
-      } ${value ? "justify-end" : "justify-start"} ${
-        value ? "bg-green-500" : "bg-slate-200"
-      }  h-6 w-12 flex transition duration-200`}
+          : "focus:ring-2 focus:ring-green-300"
+      } ${value ? "justify-start" : "justify-end"} ${
+        value ? "bg-green-500" : "bg-gree-300"
+      }  h-5 w-12 flex transition duration-500`}
     >
       <span
-        className={`bg-gray-300 transition duration-500 w-1/2 h-full m-0 p-0 shadow-xl`}
+        className={`bg-gray-100 transition duration-500 w-1/2 h-full m-0 p-0 shadow-xl`}
       ></span>
     </button>
   );
-}
+};

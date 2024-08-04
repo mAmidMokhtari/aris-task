@@ -34,9 +34,9 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({
   comments,
 }) => {
   return (
-    <div className="bg-slate-100 flex flex-col gap-2">
-      <div className="flex items-center justify-between p-2">
-        <div className="flex gap-4 items-center">
+    <div className="flex flex-col gap-2 bg-gray-100">
+      <div className="flex justify-between items-center p-2">
+        <div className="flex items-center gap-4">
           <img src={avatar} />
           <div className="flex flex-col gap-2">
             <div className="font-bold">{name}</div>
@@ -51,7 +51,7 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({
                 onPointerLeaveCapture={undefined}
                 placeholder={undefined}
               />
-              <div className="text-xs text-slate-500">{comments}نظر</div>
+              <div className="text-gray-500 text-xs">{comments}نظر</div>
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({
           {counseling_types} {accepts_insurance}
         </div>
       </div>
-      <div className="flex items-center justify-between font-semibold p-2">
+      <div className="flex justify-between items-center p-2 font-semibold">
         <div>
           {text.successfulConsultation} {last_counseling}({text.inThreeYear})
         </div>
@@ -70,7 +70,7 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({
       <div className="p-2">
         {text.psychologicalSystemNumber} {certification_id}
       </div>
-      <button className="w-full p-2 font-semibold bg-slate-200">
+      <button className="bg-gray-300 p-2 w-full font-semibold">
         {text.getAdvice}
       </button>
     </div>

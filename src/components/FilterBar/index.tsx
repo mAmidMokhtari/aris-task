@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Toggle } from "components/Base";
+import { manIcon, womanIcon } from "assets";
+import { IconButton, Toggle } from "components/Base";
 import { text } from "lib/text";
 import useStore from "store/useStore";
 
@@ -23,11 +24,11 @@ export const FilterBar: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="p-2 bg-green-500 flex gap-2 items-center font-bold">
+      <div className="flex items-center gap-2 bg-green-500 p-2 font-bold">
         {text.filters}
       </div>
-      <div className="flex flex-col gap-2 p-4 bg-slate-100">
-        <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-2 bg-gray-100 p-4">
+        <div className="flex justify-between items-center">
           <div>{text.doctorWithInsurance}</div>
           <Toggle />
           {/* <input
@@ -38,26 +39,23 @@ export const FilterBar: React.FC = () => {
         </div>
         <div className="flex flex-col gap-2">
           <div className="font-bold">{text.doctorGender}</div>
-          <select value={filters.gender ?? ""} onChange={handleGenderChange}>
-            <option value="">Gender</option>
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-          </select>
+          <div className="flex items-center gap-8 m-2">
+            <IconButton
+              Icon={womanIcon}
+              title={text.woman}
+              onClick={() => console.log("woman")}
+            />
+            <IconButton
+              Icon={manIcon}
+              title={text.man}
+              onClick={() => console.log("man")}
+            />
+          </div>
         </div>
       </div>
-      <button className="w-full p-2 border border-1 font-semibold border-blue-600 text-blue-600 bg-slate-100">
+      <button className="border-1 bg-gray-100 p-2 border border-blue-600 w-full font-semibold text-blue-600">
         {text.removeFilters}
       </button>
-      {/* <select value={filters.sort} onChange={handleSortChange}>
-        <option value="">Sort By</option>
-        <option value="certified_at">Highest Experience</option>
-        <option value="-rate">Highest Rating</option>
-      </select>
-      <select value={filters.gender ?? ""} onChange={handleGenderChange}>
-        <option value="">Gender</option>
-        <option value="1">Male</option>
-        <option value="2">Female</option>
-      </select> */}
     </div>
   );
 };
