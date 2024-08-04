@@ -1,74 +1,90 @@
 import React from "react";
 
+import { InPersonIcon, InsuranceIcon, PhoneIcon, VideoIcon } from "assets";
+import { CounselingTypesEnum } from "enums";
 import { text } from "lib/text";
-import { CounselingTypesEnum } from "types";
+import { Expert } from "models";
 
-import { Rating } from "@material-tailwind/react";
+import { Avatar, Rating } from "@material-tailwind/react";
 
 export interface ExpertCardProps {
-  accepts_insurance: boolean;
-  avatar: string;
-  certification_id: number;
-  comments: number;
-  consultations: number;
-  consultations_at: number;
-  counseling_types: CounselingTypesEnum;
-  experience: number;
-  id: number;
-  last_counseling: number;
-  name: string;
-  rate: number;
-  title: string;
+  data: Expert;
 }
 
-export const ExpertCard: React.FC<ExpertCardProps> = ({
-  name,
-  certification_id,
-  last_counseling,
-  experience,
-  counseling_types,
-  accepts_insurance,
-  avatar,
-  title,
-  rate,
-  comments,
-}) => {
+export const ExpertCard: React.FC<ExpertCardProps> = ({ data }) => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
+
+  const renderCounselingTypeIconDisplay = (
+    counselingType: CounselingTypesEnum
+  ) => {
+    switch (counselingType) {
+      case CounselingTypesEnum.in_office:
+        return <InPersonIcon />;
+      case CounselingTypesEnum.video_call:
+        return <VideoIcon />;
+      case CounselingTypesEnum.voice_call:
+        return <PhoneIcon />;
+    }
+  };
+
   return (
     <div className="flex flex-col gap-2 bg-gray-100">
       <div className="flex justify-between items-center p-2">
         <div className="flex items-center gap-4">
-          <img src={avatar} />
+          <Avatar
+            src={baseUrl + "/" + data.getAvatar()}
+            variant="square"
+            size="xxl"
+            placeholder="avatar"
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          />
+
           <div className="flex flex-col gap-2">
-            <div className="font-bold">{name}</div>
-            <div>{title}</div>
+            <div className="font-bold">{data.getName()}</div>
+            <div>{data.getTitle()}</div>
             <div className="flex items-center gap-2">
               <Rating
                 unratedColor="blue"
                 ratedColor="blue"
-                value={rate}
+                value={data.getRate()}
                 readonly
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
                 placeholder={undefined}
               />
-              <div className="text-gray-500 text-xs">{comments}نظر</div>
+              <div className="text-gray-500 text-xs">
+                {data.getComments()} {text.comment}
+              </div>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          {counseling_types} {accepts_insurance}
+          {data.getCounselingTypes().map((item) => (
+            <div key={item} className="flex items-center gap-2">
+              {renderCounselingTypeIconDisplay(item)}
+              <p>{data.getCounselingTypeDisplay(item)}</p>
+            </div>
+          ))}
+          {data.getAcceptsInsurance() && (
+            <div className="flex items-center gap-2">
+              <InsuranceIcon />
+              <p>{text.insurance}</p>
+            </div>
+          )}
         </div>
       </div>
       <div className="flex justify-between items-center p-2 font-semibold">
         <div>
-          {text.successfulConsultation} {last_counseling}({text.inThreeYear})
+          {text.successfulConsultation} {data.getConsultationsAt()}(
+          {text.inThreeYear})
         </div>
         <div className="pl-12">
-          {text.experience} {experience}
+          {text.experience} {data.getExperience()} {text.year}
         </div>
       </div>
       <div className="p-2">
-        {text.psychologicalSystemNumber} {certification_id}
+        {text.psychologicalSystemNumber} {data.getCertificationId()}
       </div>
       <button className="bg-gray-300 p-2 w-full font-semibold">
         {text.getAdvice}

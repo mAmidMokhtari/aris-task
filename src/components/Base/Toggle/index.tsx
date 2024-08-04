@@ -1,18 +1,18 @@
-import { useToggle } from "hooks/useToggle";
+interface IProps {
+  onClick: () => void;
+  value: boolean;
+}
 
-export const Toggle = () => {
-  const [value, toggle] = useToggle();
-  const handleClick = () => toggle();
-
+export const Toggle: React.FC<IProps> = ({ onClick, value }) => {
   return (
     <button
-      onClick={handleClick}
+      onClick={onClick}
       className={`${
         value
           ? "focus:ring-2 focus:ring-green-500"
-          : "focus:ring-2 focus:ring-green-300"
+          : "focus:ring-2 focus:ring-green-600"
       } ${value ? "justify-start" : "justify-end"} ${
-        value ? "bg-green-500" : "bg-gree-300"
+        value ? "bg-green-500" : "bg-gree-600"
       }  h-5 w-12 flex transition duration-500`}
     >
       <span

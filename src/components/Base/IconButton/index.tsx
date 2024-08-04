@@ -1,6 +1,8 @@
+import { ReactNode } from "react";
+
 interface IconButtonProps {
   title: string;
-  Icon: string;
+  Icon: ReactNode;
   onClick: () => void;
   className?: string;
   color?: string;
@@ -19,7 +21,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
         onClick={onClick}
         className={` p-2 ${color} hover:bg-green-700 focus:outline-none ${className}`}
       >
-        <img src={Icon} />
+        {Icon}
       </button>
       <span>{title}</span>
     </div>
