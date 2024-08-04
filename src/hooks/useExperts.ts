@@ -1,33 +1,26 @@
 import axios from "axios";
 import { Expert, IExpert } from "models";
-import { useStore } from "store/useStore";
 
-import { useQuery } from "@tanstack/react-query";
+import {
+  QueryFunctionContext,
+  QueryKey,
+  useQuery,
+} from "@tanstack/react-query";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
-const fetchExperts = async () => {
-  const { sort, gender, acceptsInsurance, search } =
-    useStore.getState().filters;
-  const params = new URLSearchParams();
-  if (sort) params.append("sort", sort);
-  if (gender !== null) params.append("gender", gender.toString());
-  if (acceptsInsurance !== null)
-    params.append("accepts_insurance", acceptsInsurance.toString());
-  if (search) params.append("search", search);
-
+const fetchExperts = async ({ queryKey }: QueryFunctionContext) => {
+  const params = JSON.parse(queryKey[1] as string);
   const response = await axios.get<{ results: IExpert[] }>(
-    `${baseUrl}/users/experts/`,
-    {
-      params,
-    }
+    `${baseUrl}/users/experts`,
+    { params }
   );
   return response.data;
 };
 
-export const useExpertsQuery = () => {
+export const useExpertsQuery = (queryKey?: QueryKey) => {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["experts"],
+    queryKey: ["experts", queryKey?.[0] || []],
     queryFn: fetchExperts,
   });
 

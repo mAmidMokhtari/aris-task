@@ -3,11 +3,22 @@ import React from "react";
 import { ExpertCard, FilterBar, SearchBar } from "components";
 import { useExpertsQuery } from "hooks/useExperts";
 import { text } from "lib/text";
+import { useStore } from "store/useStore";
 
 import { Alert, Spinner } from "@material-tailwind/react";
 
 export const Advisors: React.FC = () => {
-  const { data: expertsData, isLoading, error } = useExpertsQuery();
+  const filters = useStore((state) => state.filters);
+  const {
+    data: expertsData,
+    isLoading,
+    error,
+  } = useExpertsQuery([
+    JSON.stringify({
+      accepts_insurance: filters.acceptsInsurance,
+      sort: filters.sort,
+    }),
+  ]);
 
   if (isLoading)
     return (

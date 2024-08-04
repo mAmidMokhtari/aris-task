@@ -1,3 +1,4 @@
+import { SortEnum } from "enums";
 import { create } from "zustand";
 
 interface Expert {
@@ -13,7 +14,7 @@ interface Expert {
 interface Filters {
   sort: string;
   gender: number | null;
-  acceptsInsurance: boolean | null;
+  acceptsInsurance: boolean;
   search: string;
 }
 
@@ -22,17 +23,33 @@ interface State {
   filters: Filters;
   setExperts: (experts: Expert[]) => void;
   setFilters: (filters: Partial<Filters>) => void;
+  toggleAcceptInsurance: (filters: Partial<Filters>) => void;
+  setSortFilter: (sort: SortEnum) => void;
 }
 
 export const useStore = create<State>((set) => ({
   experts: [],
   filters: {
-    sort: "",
+    sort: SortEnum.certified_at,
     gender: null,
-    acceptsInsurance: null,
+    acceptsInsurance: false,
     search: "",
   },
   setExperts: (experts) => set({ experts }),
   setFilters: (filters) =>
     set((state) => ({ filters: { ...state.filters, ...filters } })),
+  setSortFilter: (sort) =>
+    set((state) => ({
+      filters: {
+        ...state.filters,
+        sort: sort,
+      },
+    })),
+  toggleAcceptInsurance: (filters) =>
+    set((state) => ({
+      filters: {
+        ...state.filters,
+        acceptsInsurance: !filters.acceptsInsurance,
+      },
+    })),
 }));
