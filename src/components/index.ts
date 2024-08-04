@@ -1,5 +1,3 @@
-import { ExpertCard } from './ExpertCard';
-import { FilterBar } from './FilterBar';
-import { SearchBar } from './SearchBar';
-
-export const Components = {ExpertCard, SearchBar, FilterBar}
+export * from "./ExpertCard"
+export * from "./FilterBar"
+export * from "./SearchBar"

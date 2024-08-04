@@ -1,25 +1,38 @@
 import React from "react";
 
-import { Components } from "components";
-import { useExperts } from "hooks/useExperts";
+import { ExpertCard, FilterBar, SearchBar } from "components";
+import { useExpertsQuery } from "hooks/useExperts";
+import { text } from "lib/text";
 import { IData } from "types";
 
-export const Advisors: React.FC = () => {
-  const { data: experts, isLoading, error } = useExperts();
+import { Alert, Spinner } from "@material-tailwind/react";
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading experts</div>;
+export const Advisors: React.FC = () => {
+  const { data: expertsData, isLoading, error } = useExpertsQuery();
+
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center p-4">
+        <Spinner
+          className="h-12 w-12"
+          color="green"
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        />
+      </div>
+    );
+  if (error) return <Alert color="red">{text.errorMessage}</Alert>;
 
   return (
     <div className="grid grid-cols-4 gap-4">
       <div className="col-span-1">
-        <Components.FilterBar />
+        <FilterBar />
       </div>
       <div className="col-span-3 flex flex-col gap-2">
-        <Components.SearchBar />
+        <SearchBar />
         <div className="grid grid-cols-2 gap-4">
-          {experts?.results?.map((expert: IData) => (
-            <Components.ExpertCard
+          {expertsData?.results?.map((expert: IData) => (
+            <ExpertCard
               key={expert.id}
               name={expert.name}
               rate={expert.rate}

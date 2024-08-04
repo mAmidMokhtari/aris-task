@@ -15,7 +15,7 @@ const fetchExperts = async () => {
   return response.data;
 };
 
-export const useExperts = () => {
+export function useExpertsQuery() {
   const { data, error, isLoading } = useQuery({
     queryKey: ['experts'],
     queryFn: fetchExperts
@@ -24,4 +24,4 @@ export const useExperts = () => {
   if (data) setExperts(data);
 
   return { data, error, isLoading };
-};
+}

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Toggle } from "components/Base";
 import { text } from "lib/text";
 import useStore from "store/useStore";
 
@@ -28,11 +29,12 @@ export const FilterBar: React.FC = () => {
       <div className="flex flex-col gap-2 p-4 bg-slate-100">
         <div className="flex items-center justify-between">
           <div>{text.doctorWithInsurance}</div>
-          <input
+          <Toggle />
+          {/* <input
             type="checkbox"
             checked={filters.acceptsInsurance ?? false}
             onChange={handleInsuranceChange}
-          />
+          /> */}
         </div>
         <div className="flex flex-col gap-2">
           <div className="font-bold">{text.doctorGender}</div>

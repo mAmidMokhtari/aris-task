@@ -3,6 +3,8 @@ import React from "react";
 import { text } from "lib/text";
 import { CounselingTypesEnum } from "types";
 
+import { Rating } from "@material-tailwind/react";
+
 export interface ExpertCardProps {
   accepts_insurance: boolean;
   avatar: string;
@@ -40,7 +42,15 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({
             <div className="font-bold">{name}</div>
             <div>{title}</div>
             <div className="flex items-center gap-2">
-              <div>{rate}</div>
+              <Rating
+                unratedColor="blue"
+                ratedColor="blue"
+                value={rate}
+                readonly
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+                placeholder={undefined}
+              />
               <div className="text-xs text-slate-500">{comments}نظر</div>
             </div>
           </div>

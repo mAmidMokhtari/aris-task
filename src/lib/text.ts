@@ -14,7 +14,8 @@ export const text = {
     default: "پیش فرض",
     search: "جستجو کن",
     highestRate: "بیشترین امتیاز",
-    highestExperience: "بالا ترین تجربه"
+    highestExperience: "بالا ترین تجربه",
+    errorMessage: "خطا در دریافت اطلاعات"
 
 
 }

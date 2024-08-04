@@ -1,3 +1,1 @@
-import { Advisors } from './advisors';
-
-export const Pages = {Advisors}
+export * from "./advisors"
