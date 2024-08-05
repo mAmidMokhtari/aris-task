@@ -17,6 +17,8 @@ export const Advisors: React.FC = () => {
     JSON.stringify({
       accepts_insurance: filters.acceptsInsurance,
       sort: filters.sort,
+      gender: filters.gender,
+      search: filters.search,
     }),
   ]);
 

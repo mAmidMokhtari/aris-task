@@ -6,20 +6,7 @@ import { text } from "lib/text";
 import { useStore } from "store/useStore";
 
 export const FilterBar: React.FC = () => {
-  const { filters, setFilters, toggleAcceptInsurance } = useStore();
-
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilters({ sort: event.target.value });
-  };
-
-  const handleGenderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilters({ gender: parseInt(event.target.value) });
-  };
-
-  // const [value, toggle] = useToggle();
-  const handleClickToggle = () => {
-    // toggle();
-  };
+  const { filters, setFilters } = useStore();
 
   return (
     <div className="flex flex-col gap-4">
@@ -30,7 +17,9 @@ export const FilterBar: React.FC = () => {
         <div className="flex justify-between items-center">
           <div>{text.doctorWithInsurance}</div>
           <Toggle
-            onClick={() => toggleAcceptInsurance(filters)}
+            onClick={() =>
+              setFilters({ acceptsInsurance: !filters.acceptsInsurance })
+            }
             value={filters.acceptsInsurance}
           />
         </div>
@@ -40,17 +29,27 @@ export const FilterBar: React.FC = () => {
             <IconButton
               Icon={<WomanIcon />}
               title={text.woman}
-              onClick={() => console.log("woman")}
+              onClick={() => setFilters({ gender: 1 })}
             />
             <IconButton
               Icon={<ManIcon />}
               title={text.man}
-              onClick={() => console.log("man")}
+              onClick={() => setFilters({ gender: 2 })}
             />
           </div>
         </div>
       </div>
-      <button className="border-1 bg-gray-100 p-2 border border-blue-600 w-full font-semibold text-blue-600">
+      <button
+        className="border-1 bg-gray-100 p-2 border border-blue-600 w-full font-semibold text-blue-600"
+        onClick={() =>
+          setFilters({
+            sort: "",
+            gender: 0,
+            acceptsInsurance: undefined,
+            search: "",
+          })
+        }
+      >
         {text.removeFilters}
       </button>
     </div>

@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import { SortEnum } from "enums";
-import { text } from "lib/text";
-import { useStore } from "store/useStore";
+import { SortEnum } from 'enums';
+import { text } from 'lib/text';
+import { useStore } from 'store/useStore';
 
 export const SearchBar: React.FC = () => {
-  const { filters, setFilters, setSortFilter } = useStore();
+  const { filters, setFilters } = useStore();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilters({ search: event.target.value });
@@ -18,19 +18,19 @@ export const SearchBar: React.FC = () => {
         <div className="flex items-center gap-6">
           <button
             className="font-semibold"
-            onClick={() => setSortFilter(SortEnum.default)}
+            onClick={() => setFilters({ sort: SortEnum.default })}
           >
             {text.default}
           </button>
           <button
             className="font-semibold"
-            onClick={() => setSortFilter(SortEnum.certified_at)}
+            onClick={() => setFilters({ sort: SortEnum.certified_at })}
           >
             {text.highestExperience}
           </button>
           <button
             className="font-semibold"
-            onClick={() => setSortFilter(SortEnum.rate)}
+            onClick={() => setFilters({ sort: SortEnum.rate })}
           >
             {text.highestRate}
           </button>

@@ -14,6 +14,8 @@
     "@tanstack/react-query": "^5.51.21",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.3",
+    "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
     "postcss": "^8.4.40",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -21,6 +23,8 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.7",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
