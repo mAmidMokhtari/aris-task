@@ -16,7 +16,7 @@ export const Toggle: React.FC<IProps> = ({ onClick, value }) => {
       }  h-5 w-12 flex transition duration-500`}
     >
       <span
-        className={`bg-gray-100 transition duration-500 w-1/2 h-full m-0 p-0 shadow-xl`}
+        className={`bg-gray-400 transition duration-500 w-1/2 h-full m-0 p-0 shadow-xl`}
       ></span>
     </button>
   );

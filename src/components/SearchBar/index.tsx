@@ -62,7 +62,6 @@ export const SearchBar: React.FC = () => {
         <input
           type="text"
           placeholder={text.search}
-          defaultValue={searchTerm}
           value={searchTerm}
           onChange={handleSearchChange}
           className="bg-white p-2 border w-full"
