@@ -1,3 +1,2 @@
-export * from "./Badge"
-export * from "./IconButton"
-export * from "./Toggle"
+export * from "./IconButton";
+export * from "./Toggle";

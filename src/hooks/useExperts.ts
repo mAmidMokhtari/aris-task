@@ -1,12 +1,15 @@
-import axios from "axios";
-import { Expert, IExpert } from "models";
-import { paramsUpdater } from "utils";
+import axios from 'axios';
+import {
+  Expert,
+  IExpert,
+} from 'models';
+import { paramsUpdater } from 'utils';
 
 import {
   QueryFunctionContext,
   QueryKey,
   useQuery,
-} from "@tanstack/react-query";
+} from '@tanstack/react-query';
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -21,7 +24,6 @@ const fetchExperts = async ({ queryKey }: QueryFunctionContext) => {
 };
 
 export const useExpertsQuery = (queryKey?: QueryKey) => {
-  console.log(queryKey);
   const { data, error, isLoading } = useQuery({
     queryKey: ["experts", queryKey?.[0] || []],
     queryFn: fetchExperts,

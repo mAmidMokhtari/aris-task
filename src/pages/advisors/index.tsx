@@ -1,11 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import { ExpertCard, FilterBar, SearchBar } from "components";
-import { useExpertsQuery } from "hooks/useExperts";
-import { text } from "lib/text";
-import { useStore } from "store/useStore";
+import {
+  ExpertCard,
+  FilterBar,
+  SearchBar,
+} from 'components';
+import { useExpertsQuery } from 'hooks';
+import { text } from 'lib/text';
+import { useStore } from 'store/useStore';
 
-import { Alert, Spinner } from "@material-tailwind/react";
+import {
+  Alert,
+  Spinner,
+} from '@material-tailwind/react';
 
 export const Advisors: React.FC = () => {
   const filters = useStore((state) => state.filters);

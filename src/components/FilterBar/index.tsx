@@ -1,9 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import { ManIcon, WomanIcon } from "assets";
-import { IconButton, Toggle } from "components/Base";
-import { text } from "lib/text";
-import { useStore } from "store/useStore";
+import {
+  ManIcon,
+  WomanIcon,
+} from 'assets';
+import {
+  IconButton,
+  Toggle,
+} from 'components/Base';
+import { text } from 'lib/text';
+import { useStore } from 'store/useStore';
 
 export const FilterBar: React.FC = () => {
   const { filters, setFilters } = useStore();
@@ -27,14 +33,16 @@ export const FilterBar: React.FC = () => {
           <div className="font-bold">{text.doctorGender}</div>
           <div className="flex items-center gap-8 m-2">
             <IconButton
+              color={`${filters.gender === 2 ? `bg-green-500` : `bg-gray-500`}`}
               Icon={<WomanIcon />}
               title={text.woman}
-              onClick={() => setFilters({ gender: 1 })}
+              onClick={() => setFilters({ gender: 2 })}
             />
             <IconButton
+              color={`${filters.gender === 1 ? `bg-green-500` : `bg-gray-500`}`}
               Icon={<ManIcon />}
               title={text.man}
-              onClick={() => setFilters({ gender: 2 })}
+              onClick={() => setFilters({ gender: 1 })}
             />
           </div>
         </div>
