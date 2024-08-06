@@ -1,31 +1,35 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useState } from "react";
 
-import { SortEnum } from 'enums';
-import { text } from 'lib/text';
-import { debounce } from 'lodash';
-import { useStore } from 'store/useStore';
+import { SortEnum } from "enums";
+import { text } from "lib/text";
+import { debounce } from "lodash";
+import { useStore } from "store/useStore";
 
 export const SearchBar: React.FC = () => {
   const { filters, setFilters } = useStore();
   const [searchTerm, setSearchTerm] = useState(filters.search);
 
+  // Memoizing the actual update function to avoid unnecessary re-renders
+  const debouncedSave = useCallback(
+    debounce((value) => {
+      setFilters({ search: value });
+    }, 500),
+    [setFilters]
+  );
+
+  // Handle input change
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    const { value } = event.target;
+    setSearchTerm(value);
+    debouncedSave(value); // Call the debounced function
   };
 
-  const debouncedChangeHandler = debounce((value) => {
-    setFilters({ search: value });
-  }, 500);
+  // Cleanup debounce on unmount
   useEffect(() => {
-    debouncedChangeHandler(searchTerm);
-
     return () => {
-      debouncedChangeHandler.cancel();
+      debouncedSave.cancel();
     };
-  }, [searchTerm, debouncedChangeHandler]);
+  }, [debouncedSave]);
 
   return (
     <div className="flex justify-between items-center bg-gray-300 p-2">
