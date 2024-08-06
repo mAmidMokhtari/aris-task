@@ -1,35 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 
 import { SortEnum } from "enums";
 import { text } from "lib/text";
-import { debounce } from "lodash";
 import { useStore } from "store/useStore";
+
+import { SearchInput } from "./components";
 
 export const SearchBar: React.FC = () => {
   const { filters, setFilters } = useStore();
-  const [searchTerm, setSearchTerm] = useState(filters.search);
-
-  // Memoizing the actual update function to avoid unnecessary re-renders
-  const debouncedSave = useCallback(
-    debounce((value) => {
-      setFilters({ search: value });
-    }, 500),
-    [setFilters]
-  );
-
-  // Handle input change
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setSearchTerm(value);
-    debouncedSave(value); // Call the debounced function
-  };
-
-  // Cleanup debounce on unmount
-  useEffect(() => {
-    return () => {
-      debouncedSave.cancel();
-    };
-  }, [debouncedSave]);
 
   return (
     <div className="flex justify-between items-center bg-gray-300 p-2">
@@ -63,13 +41,7 @@ export const SearchBar: React.FC = () => {
         </div>
       </div>
       <div className="w-[450px]">
-        <input
-          type="text"
-          placeholder={text.search}
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="bg-white p-2 border w-full"
-        />
+        <SearchInput />
       </div>
     </div>
   );

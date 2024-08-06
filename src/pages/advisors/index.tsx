@@ -48,8 +48,6 @@ export const Advisors: React.FC = () => {
           ))}
         </div>
       </div>
-
-      <div></div>
     </div>
   );
 };
